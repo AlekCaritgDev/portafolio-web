@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dev Portfolio | Full-Stack Developer</title>
+    <meta name="description"
+        content="Personal portfolio of a passionate full-stack developer specializing in frontend and backend technologies." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet" />
+    <style>
+        /* ── Reset & Base ── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #07080f;
+            --bg-card: #0d0f1a;
+            --fg: #d4d8e8;
+            --fg-muted: #6b7394;
+            --primary: #3b82f6;
+            --primary-dim: rgba(59, 130, 246, 0.1);
+            --primary-hover: #2563eb;
+            --border: #1a1d2e;
+            --secondary: #111427;
+            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg);
+            color: var(--fg);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1152px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* ── Navbar ── */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: rgba(7, 8, 15, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .navbar-inner {
+            max-width: 1152px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.5rem;
+        }
+
+        .navbar-logo {
+            font-family: var(--font-mono);
+            font-size: 1.125rem;
+            letter-spacing: -0.025em;
+            color: var(--fg);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.875rem;
+            color: var(--fg-muted);
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--fg);
+            cursor: pointer;
+            padding: 0.25rem;
+        }
+
+        .menu-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 0.25rem;
+            padding: 1rem 1.5rem;
+            background: rgba(7, 8, 15, 0.95);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid var(--border);
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--fg-muted);
+            transition: all 0.2s;
+        }
+
+        .mobile-menu a:hover {
+            background: var(--secondary);
+            color: var(--fg);
+        }
+
+        /* ── Hero ── */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem 1.5rem 2rem;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-glow {
+            position: absolute;
+            left: 50%;
+            top: 33%;
+            width: 500px;
+            height: 500px;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: var(--primary-dim);
+            filter: blur(120px);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 48rem;
+        }
+
+        .hero-tag {
+            font-family: var(--font-mono);
+            font-size: 0.8125rem;
+            letter-spacing: 0.15em;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.025em;
+            margin-bottom: 1.5rem;
+            text-wrap: balance;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero-desc {
+            font-size: 1.125rem;
+            color: var(--fg-muted);
+            max-width: 36rem;
+            margin: 0 auto 2.5rem;
+            text-wrap: pretty;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary);
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--secondary);
+            color: var(--fg);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(17, 20, 39, 0.8);
+        }
+
+        .hero-socials {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .hero-socials a {
+            color: var(--fg-muted);
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-socials a:hover {
+            color: var(--primary);
+        }
+
+        .hero-socials svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2.5rem;
+            color: var(--fg-muted);
+            animation: bounce 2s infinite;
+            transition: color 0.2s;
+        }
+
+        .scroll-indicator:hover {
+            color: var(--primary);
+        }
+
+        .scroll-indicator svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+
+        /* ── Sections common ── */
+        .section {
+            padding: 7rem 1.5rem;
+        }
+
+        .section-tag {
+            font-family: var(--font-mono);
+            font-size: 0.8125rem;
+            letter-spacing: 0.15em;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-size: clamp(1.75rem, 3vw, 2.25rem);
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin-bottom: 1.5rem;
+            text-wrap: balance;
+        }
+
+        .section-desc {
+            color: var(--fg-muted);
+            line-height: 1.7;
+            text-wrap: pretty;
+            max-width: 42rem;
+        }
+
+        .section-header {
+            max-width: 42rem;
+            margin-bottom: 4rem;
+        }
+
+        /* ── About Cards ── */
+        .about-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .about-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .about-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            transition: border-color 0.2s;
+        }
+
+        .about-card:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .about-card-icon {
+            display: inline-flex;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            background: var(--primary-dim);
+            margin-bottom: 1.25rem;
+        }
+
+        .about-card-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--primary);
+        }
+
+        .about-card h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .about-card p {
+            font-size: 0.875rem;
+            color: var(--fg-muted);
+            line-height: 1.7;
+        }
+
+        /* ── Skills ── */
+        .skills-grid {
+            display: grid;
+            gap: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .skills-category-label {
+            font-family: var(--font-mono);
+            font-size: 0.8125rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skills-category-label::before {
+            content: '';
+            display: block;
+            width: 1.5rem;
+            height: 1px;
+            background: var(--primary);
+        }
+
+        .skill-item {
+            margin-bottom: 1.25rem;
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-name {
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .skill-pct {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--fg-muted);
+        }
+
+        .skill-track {
+            height: 6px;
+            border-radius: 9999px;
+            background: var(--secondary);
+            overflow: hidden;
+        }
+
+        .skill-fill {
+            height: 100%;
+            border-radius: 9999px;
+            background: var(--primary);
+            width: 0;
+            transition: width 1s ease;
+        }
+
+        .tools-section {
+            margin-top: 4rem;
+        }
+
+        .tools-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .tool-badge {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--fg-muted);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            transition: all 0.2s;
+        }
+
+        .tool-badge:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            color: var(--fg);
+        }
+
+        /* ── Experience ── */
+        .exp-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .exp-item {
+            display: grid;
+            gap: 1rem;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        @media (min-width: 768px) {
+            .exp-item {
+                grid-template-columns: 200px 1fr;
+            }
+        }
+
+        .exp-item:hover {
+            border-color: var(--border);
+            background: var(--bg-card);
+        }
+
+        .exp-period {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            color: var(--fg-muted);
+            padding-top: 0.25rem;
+        }
+
+        .exp-role {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .exp-role span {
+            color: var(--primary);
+        }
+
+        .exp-desc {
+            font-size: 0.875rem;
+            color: var(--fg-muted);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--primary);
+            background: var(--primary-dim);
+            padding: 0.25rem 0.625rem;
+            border-radius: 0.375rem;
+        }
+
+        /* ── Projects ── */
+        .projects-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            transition: border-color 0.2s;
+        }
+
+        .project-card:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .project-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .project-links {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .project-links a {
+            color: var(--fg-muted);
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+        }
+
+        .project-links a:hover {
+            color: var(--primary);
+        }
+
+        .project-links svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .project-desc {
+            font-size: 0.875rem;
+            color: var(--fg-muted);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        /* ── Contact ── */
+        .contact-inner {
+            max-width: 42rem;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-inner .section-header {
+            margin: 0 auto 2.5rem;
+        }
+
+        .contact-inner .section-desc {
+            margin: 0 auto;
+        }
+
+        .contact-socials {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-socials a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--fg-muted);
+            transition: color 0.2s;
+        }
+
+        .contact-socials a:hover {
+            color: var(--primary);
+        }
+
+        .contact-socials svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .contact-divider {
+            width: 1px;
+            height: 1rem;
+            background: var(--border);
+        }
+
+        /* ── Footer ── */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 2rem 1.5rem;
+        }
+
+        .footer-inner {
+            max-width: 1152px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-inner {
+                flex-direction: row;
+            }
+        }
+
+        .footer-inner p {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--fg-muted);
+        }
+
+        /* ── Animations ── */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 767px) {
+            .nav-links {
+                display: none;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .mobile-menu {
+                display: none !important;
+            }
+        }
+
+        /* ── Scrollbar ── */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--fg-muted);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <nav class="navbar-inner">
+            <a href="#hero" class="navbar-logo">&lt;AlekCaritg Dev /&gt;</a>
+            <ul class="nav-links">
+                <li><a href="#hero">Inicio</a></li>
+                <li><a href="#about">Sobre Mi</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Proyectos</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+            <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </nav>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#hero">Inicio</a>
+            <a href="#about">Sobre Mi</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Proyectos</a>
+            <a href="#contact">Contacto</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section id="hero" class="hero">
+            <div class="hero-glow"></div>
+            <div class="hero-content fade-in">
+                <p class="hero-tag">Front-end & Back-end</p>
+                <h1>Construyo experiencias <span>digitales</span> de alto impacto</h1>
+                <p class="hero-desc">Desarrollador apasionado por crear interfaces accesibles y pixel-perfect con
+                    backends robustos y escalables. Frontend &amp; Backend.</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn-primary">Ver Proyectos</a>
+                    <a href="#contact" class="btn-secondary">Contacto</a>
+                </div>
+                <div class="hero-socials">
+                    <a href="https://github.com/AlekCaritgDev" target="_blank" rel="noopener noreferrer"
+                        aria-label="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                            <path d="M9 18c-4.51 2-5-2-7-2" />
+                        </svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/alekcaritg/" target="_blank" rel="noopener noreferrer"
+                        aria-label="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                            <rect width="4" height="12" x="2" y="9" />
+                            <circle cx="4" cy="4" r="2" />
+                        </svg>
+                    </a>
+                    <a href="mailto:alekcaritg.p@gmail.com" aria-label="Email">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="20" height="16" x="2" y="4" rx="2" />
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <a href="#about" class="scroll-indicator" aria-label="Scroll down">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 5v14" />
+                    <path d="m19 12-7 7-7-7" />
+                </svg>
+            </a>
+        </section>
+
+        <!-- About -->
+        <section id="about" class="section">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <p class="section-tag">SOBRE MI</p>
+
+                    <div class="about-title-row">
+                        <h2 class="section-title">
+                            Quién soy?
+                        </h2>
+                    </div>
+
+                    <p class="section-desc">
+                        Soy Alek Caritg, desarrollador web junior con muchas ganas de seguir
+                        creciendo en el mundo del desarrollo. Me gusta especialmente el
+                        frontend, donde puedo combinar lógica y creatividad para crear
+                        interfaces funcionales y atractivas.
+                        <br />
+                        <br />
+                        Disfruto mucho trabajando en equipo, ya que compartir ideas,
+                        resolver problemas juntos y aprender de otras personas ha hecho que
+                        mi camino como desarrollador sea mucho más fluido y motivador.
+                        <br />
+                        <br />
+                        Fuera del código, me encanta la música, salir de fiesta, las motos y
+                        vivir nuevas experiencias. También soy fan del buen café
+                    </p>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-card fade-in">
+                        <div class="about-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m18 16 4-4-4-4" />
+                                <path d="m6 8-4 4 4 4" />
+                                <path d="m14.5 4-5 16" />
+                            </svg>
+                        </div>
+                        <h3>Frontend</h3>
+                        <p>Interfaces modernas y responsivas con React, Next.js y TypeScript. Enfocado en rendimiento y
+                            accesibilidad.</p>
+                    </div>
+                    <div class="about-card fade-in">
+                        <div class="about-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect width="20" height="8" x="2" y="2" rx="2" ry="2" />
+                                <rect width="20" height="8" x="2" y="14" rx="2" ry="2" />
+                                <line x1="6" x2="6.01" y1="6" y2="6" />
+                                <line x1="6" x2="6.01" y1="18" y2="18" />
+                            </svg>
+                        </div>
+                        <h3>Backend</h3>
+                        <p>APIs robustas y escalables con Node.js, Python y bases de datos SQL/NoSQL. Arquitectura
+                            limpia y segura.</p>
+                    </div>
+                    <div class="about-card fade-in">
+                        <div class="about-card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z" />
+                                <path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" />
+                                <path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" />
+                            </svg>
+                        </div>
+                        <h3>Full-Stack</h3>
+                        <p>Integro frontend y backend para crear productos completos, desde la base de datos hasta la
+                            UI.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section id="skills" class="section">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <p class="section-tag">SKILLS</p>
+                    <h2 class="section-title">Tecnologias y herramientas</h2>
+                    <p class="section-desc">Stack tecnologico con el que trabajo dia a dia para construir aplicaciones
+                        web modernas y escalables.</p>
+                </div>
+                <div class="skills-grid fade-in">
+                    <!-- Frontend -->
+                    <div>
+                        <div class="skills-category-label">FRONTEND</div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name">React</span><span
+                                    class="skill-pct">50%</span></div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-level="50"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name">TypeScript</span><span
+                                    class="skill-pct">70%</span></div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-level="70"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name">Angular</span><span
+                                    class="skill-pct">70%</span></div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-level="70"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name">Tailwind CSS</span><span
+                                    class="skill-pct">92%</span></div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-level="92"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name">HTML / CSS</span><span
+                                    class="skill-pct">95%</span></div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-level="95"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name">JavaScript</span><span
+                                    class="skill-pct">95%</span></div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-level="95"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Backend -->
+                    <div>
+                        <div class="skills-category-label">BACKEND</div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name">Node.js</span><span
+                                    class="skill-pct">70%</span></div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-level="70"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name">PHP</span><span
+                                    class="skill-pct">80%</span></div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-level="80"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name">Python</span><span
+                                    class="skill-pct">50%</span></div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-level="50"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name">MySql</span><span
+                                    class="skill-pct">82%</span></div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-level="82"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name">SQL Server</span><span
+                                    class="skill-pct">78%</span></div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-level="78"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header"><span class="skill-name">REST APIs</span><span
+                                    class="skill-pct">60%</span></div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-level="60"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tools -->
+                <div class="tools-section fade-in">
+                    <div class="skills-category-label">HERRAMIENTAS</div>
+                    <div class="tools-wrap">
+                        <span class="tool-badge">Git</span>
+                        <span class="tool-badge">Docker</span>
+                        <span class="tool-badge">Figma</span>
+                        <span class="tool-badge">Linux</span>
+                        <span class="tool-badge">CI/CD</span>
+                        <span class="tool-badge">VS Code</span>
+                        <span class="tool-badge">GitHub</span>
+                        <span class="tool-badge">VirtualBox</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <p class="section-tag">EDUCACIÓN</p>
+                    <h2 class="section-title">Formación académica</h2>
+                </div>
+                <div class="exp-list">
+
+                    <div class="exp-item fade-in">
+                        <p class="exp-period">2021 &mdash; 2023</p>
+                        <div>
+                            <p class="exp-role">Grado Medio en Sistemas Microinformáticos y Redes (SMX) <span>&middot;
+                                    Institut El Ginebró</span></p>
+                            <p class="exp-desc">
+                                Formación en sistemas informáticos, redes, hardware y administración básica de
+                                servidores.
+                                Configuración y mantenimiento de equipos y entornos de red.
+                            </p>
+                            <div class="tags">
+                                <span class="tag">Redes</span>
+                                <span class="tag">Hardware</span>
+                                <span class="tag">Sistemas</span>
+                                <span class="tag">Windows / Linux</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exp-item fade-in">
+                        <p class="exp-period">2023 &mdash; 2025</p>
+                        <div>
+                            <p class="exp-role">Grado Superior en Desarrollo de Aplicaciones Multiplataforma (DAM)
+                                <span>&middot; Institut El Ginebró</span>
+                            </p>
+                            <p class="exp-desc">
+                                Formación especializada en desarrollo de software, bases de datos y aplicaciones web.
+                                Desarrollo de proyectos con Java, SQL, Angular, PHP y gestión de servidores.
+                            </p>
+                            <div class="tags">
+                                <span class="tag">Java</span>
+                                <span class="tag">SQL</span>
+                                <span class="tag">Angular</span>
+                                <span class="tag">PHP</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exp-item fade-in">
+                        <p class="exp-period">2025</p>
+                        <div>
+                            <p class="exp-role">Máster en JavaScript Moderno <span>&middot; Udemy</span></p>
+                            <p class="exp-desc">
+                                Formación avanzada en JavaScript, desarrollo frontend moderno y buenas prácticas.
+                                Profundización en ES6+, asincronía, APIs y frameworks modernos.
+                            </p>
+                            <div class="tags">
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">ES6+</span>
+                                <span class="tag">APIs</span>
+                                <span class="tag">Frontend</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Projects -->
+        <section id="projects" class="section">
+            <div class="container">
+                <div class="section-header fade-in">
+                    <p class="section-tag">PROYECTOS</p>
+                    <h2 class="section-title">Trabajo seleccionado</h2>
+                    <p class="section-desc">Una seleccion de proyectos recientes en los que he trabajado, abarcando
+                        frontend, backend y aplicaciones full-stack.</p>
+                </div>
+                <div class="projects-grid">
+                    <!-- Project 1 -->
+                    <article class="project-card fade-in">
+                        <div class="project-header">
+                            <h3 class="project-title">Finance App - Gestor de Finanzas</h3>
+                            <div class="project-links">
+                                <a href="https://github.com/AlekCaritgDev/Finance-App" target="_blank"
+                                    rel="noopener noreferrer" aria-label="GitHub repo">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                                        <path d="M9 18c-4.51 2-5-2-7-2" />
+                                    </svg>
+                                </a>
+                                <!-- <a href="https://example.com" target="_blank" rel="noopener noreferrer"
+                                    aria-label="Live demo">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M15 3h6v6" />
+                                        <path d="M10 14 21 3" />
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                    </svg>
+                                </a> -->
+                            </div>
+                        </div>
+                        <p class="project-desc">Aplicación web para la gestión personal de finanzas, desarrollada como
+                            proyecto final del ciclo DAM.
+                            Incluye autenticación con JWT, protección de rutas, dashboard dinámico y conexión a base de
+                            datos MySQL.</p>
+                        <div class="tags">
+                            <span class="tag">Node.js</span><span class="tag">Angular</span><span
+                                class="tag">MySQL</span><span class="tag">Express.js</span><span
+                                class="tag">Bootstrap</span><span class="tag">bcryptjs (encriptación)</span><span
+                                class="tag">JSON Web Tokens (JWT)</span>
+                        </div>
+                    </article>
+                    <!-- Project 2 -->
+                    <article class="project-card fade-in">
+                        <div class="project-header">
+                            <h3 class="project-title">ARK-Survival-Evolved</h3>
+                            <div class="project-links">
+                                <a href="https://github.com/AlekCaritgDev/Finance-App" target="_blank"
+                                    rel="noopener noreferrer" aria-label="GitHub repo">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                                        <path d="M9 18c-4.51 2-5-2-7-2" />
+                                    </svg>
+                                </a>
+                                <a href="https://alekcaritgdev.github.io/ARK-Survival-Evolved/" target="_blank" rel="noopener noreferrer"
+                                    aria-label="Live demo">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M15 3h6v6" />
+                                        <path d="M10 14 21 3" />
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <p class="project-desc">Mini sitio web hecho solo con HTML y Bootstrap 5 para practicar
+                            maquetación y diseño responsive.
+                            Contiene un video introductorio de ARK: Survival Evolved, una sección de "Dino-Dossiers" con
+                            cards responsivas y un formulario de login con diseño moderno.</p>
+                        <div class="tags">
+                            <span class="tag">HTML5</span><span class="tag">Bootstrap 5 </span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="section">
+            <div class="container">
+                <div class="contact-inner">
+                    <div class="section-header fade-in">
+                        <p class="section-tag">CONTACTO</p>
+                        <h2 class="section-title">Trabajemos juntos</h2>
+                        <p class="section-desc">Si tienes un proyecto en mente o simplemente quieres saludar, no dudes
+                            en contactarme. Siempre estoy abierto a nuevas oportunidades.</p>
+                    </div>
+                    <a href="mailto:hello@dev.com" class="btn-primary fade-in">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m22 2-7 20-4-9-9-4Z" />
+                            <path d="M22 2 11 13" />
+                        </svg>
+                        Enviar Email
+                    </a>
+                    <div class="contact-socials fade-in">
+                        <a href="https://github.com/AlekCaritgDev" target="_blank" rel="noopener noreferrer">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                                <path d="M9 18c-4.51 2-5-2-7-2" />
+                            </svg>
+                            GitHub
+                        </a>
+                        <span class="contact-divider"></span>
+                        <a href="https://www.linkedin.com/in/alekcaritg/" target="_blank" rel="noopener noreferrer">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                                <rect width="4" height="12" x="2" y="9" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
+                            LinkedIn
+                        </a>
+                        <span class="contact-divider"></span>
+                        <a href="mailto:alekcaritg.p@gmail.com">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect width="20" height="16" x="2" y="4" rx="2" />
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                            </svg>
+                            Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <p>Crafted with code &amp; coffee.</p>
+            <p>&copy; 2026 &mdash; All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ── Mobile Menu Toggle ──
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            const isOpen = mobileMenu.classList.contains('active');
+            menuBtn.innerHTML = isOpen
+                ? '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>'
+                : '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>';
+        });
+
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                menuBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>';
+            });
+        });
+
+        // ── Scroll Animations (IntersectionObserver) ──
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+        );
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // ── Skill Bars Animation ──
+        const skillObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const fills = entry.target.querySelectorAll('.skill-fill');
+                        fills.forEach(fill => {
+                            const level = fill.getAttribute('data-level');
+                            setTimeout(() => { fill.style.width = level + '%'; }, 200);
+                        });
+                        skillObserver.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.2 }
+        );
+
+        document.querySelectorAll('.skills-grid').forEach(el => skillObserver.observe(el));
+
+        // ── Active Nav Link on Scroll ──
+        const sections = document.querySelectorAll('section[id]');
+        const navAnchors = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navAnchors.forEach(a => {
+                a.style.color = a.getAttribute('href') === '#' + current ? 'var(--primary)' : '';
+            });
+        });
+    </script>
+</body>
+
+</html>
